@@ -13,6 +13,7 @@
              4. Modificar el nombre de la carpeta examples/c/projects/app a TP2.  
              5. Eliminar la carpeta examples/c/projects/TP2/out.  
              6. Migración exitosa.**  
+             
       - ii. Identificar funciones de librería sAPI útiles para el parpadeo de un led y printf (UART_DEBUG). 
            >**1. delay() incluida desde sapi_delay.c.
              2. gpioRead() incluida desde "sapi_gpio.c". Devuelve TRUE o FALSE si en el pin de placa de desarrollo se lee un estado alto VCC o bajo GND, respectivamente.  
