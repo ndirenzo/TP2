@@ -28,3 +28,6 @@
 2. El objetivo a continuación es crear las funciones gpioInit, gpioWrite y gpioRead, las cuales implementan completamente el uso de los
 GPIOs de la placa en una manera simple y general: 
 
+   b. Estructras que representan los periféricos:
+      1. SCU - System Control Unit pág. 405 User Manual:  "The system control unit contains the registers to configure the pin function of multiplexed
+digital pins, the EMC clock delays, and the GPIO pin interrupts." En el archivo "" se mapean los nombres de los pines desde el punto de vista del microcontrolador con la dirección del registro que controla ese pin, por ejemplo: #define SFSP2_10 0x128 // pin P2_10 -> LED1. En el archivo "sapi_gpio.c" se configuran los registros del SCU por ejemplo: { {2,10}, FUNC0, {0,14} },   // 40   LED1   asigna al 
