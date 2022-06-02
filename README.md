@@ -14,11 +14,11 @@
              5. Eliminar la carpeta examples/c/projects/TP2/out.  
              6. Migración exitosa.**  
       - ii. Identificar funciones de librería sAPI útiles para el parpadeo de un led y printf (UART_DEBUG). 
-         >**1. delay() incluida desde sapi_delay.c. 
-           2. gpioRead() incluida desde "sapi_gpio.c". Devuelve TRUE o FALSE si en el pin de placa de desarrollo se lee un estado alto VCC o bajo GND, respectivamente.
-           3. gpioWrite() incluida desde "sapi_gpio.c". Escribe un valor 1 o 0 en un pin de la placa, p.ej. gpioWrite(CIAA_BOARD_LED, ON). 
-           4. gpioToggle() incluidad desde "sapi_gpio.c". Escribe en un pin de la placa de desarrollo - definido como salida - el valor inverso al presente actualmente en el pin, esto lo hace llamando a la función gpioWrite(pin, !gpioRead(pin)).
-           5. boardconfig() incluida desde "sapi_board.h". Configura los pines como entrada o salida a través de la función gpioInit(), p.ej. gpioInit(TEC1, GPIO_INPUT) establece el pin de la placa de desarrollo llamado "TEC1" como entrada. 
+            >**1. delay() incluida desde sapi_delay.c. 
+             2. gpioRead() incluida desde "sapi_gpio.c". Devuelve TRUE o FALSE si en el pin de placa de desarrollo se lee un estado alto VCC o bajo GND, respectivamente.
+            3. gpioWrite() incluida desde "sapi_gpio.c". Escribe un valor 1 o 0 en un pin de la placa, p.ej. gpioWrite(CIAA_BOARD_LED, ON). 
+            4. gpioToggle() incluidad desde "sapi_gpio.c". Escribe en un pin de la placa de desarrollo - definido como salida - el valor inverso al presente actualmente en el pin, esto lo hace llamando a la función gpioWrite(pin, !gpioRead(pin)).
+            5. boardconfig() incluida desde "sapi_board.h". Configura los pines como entrada o salida a través de la función gpioInit(), p.ej. gpioInit(TEC1, GPIO_INPUT) establece el pin de la placa de desarrollo llamado "TEC1" como entrada. 
              
           **Adasdas**
          - 3. Idem c pero con datos (definiciones, constantes, variables, estructuras, etc.) (tanto en ResetISR() como en main())
@@ -27,3 +27,4 @@
           
 2. El objetivo a continuación es crear las funciones gpioInit, gpioWrite y gpioRead, las cuales implementan completamente el uso de los
 GPIOs de la placa en una manera simple y general: 
+
