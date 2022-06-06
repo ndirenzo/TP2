@@ -37,7 +37,7 @@ GPIOs de la placa en una manera simple y general:
             - 
       2. GPIO - General-Purpose Input/Output. Los pines configurados por el SCU para funcionar como GPIO (FUNC0) son controlados por los registros de GPIO. 
       
-            - Chip_GPIO_SetDir(LPC_GPIO_t *pGPIO, uint8_t portNum) que recibe la dirección en memoria del bloque de registros *pGPIO, el puerto GPIO y el pin GPIO y lo configura como entrada o salida según uint8_t sea una macro de entrada o salida (0 o 1). 
+            - Chip_GPIO_SetDir(LPC_GPIO_t *pGPIO, uint8_t portNum) que recibe la dirección en memoria del bloque de registros *pGPIO, el puerto GPIO y el pin GPIO y lo configura como entrada o salida según uint8_t sea una macro de entrada o salida (0 o 1) modificando los registros GPIO DIR.
                     
                 ```c
                 STATIC INLINE void Chip_GPIO_SetDir(LPC_GPIO_T *pGPIO, uint8_t portNum, uint32 bitvalue, uint8_t out)
@@ -48,13 +48,12 @@ GPIOs de la placa en una manera simple y general:
                  ```c
                 STATIC INLINE void ChipGPIO_SetPinState( LPC_GPIO_PORT *pGPIO, gpioPort, gpioPin, 0)
                 ```
+                
+     c. Configuraciones electricas de un pin GPIO: Los bits EPUN y EPD en los registros SFS permite seleccionar resistores de pull-up o pull-down integrados. Activando ambos pines se habilita el modo repetidor y desactivando ambos se deja el pin inerte.
       
-```c
-bool_t gpioInit(gpioMap_t pin, gpioInit_t config)
---> gpioObtainPinInit(gpioMap_t pin, int8_t *pinNamePort, int8_t *pinNamePin, int8_t *func, int8_t *gpioPort, int8_t *gpioPin)
---> switch(config):
-    case GPIO_OUTPUT:
-        Chip_SCU_PinMux(pinNamePort, pinNamePin, func);
-        Chip_GPIO_SetDir(...);
-        Chip_GPIO_SetPinState(...);
-```
+    | Bit | Descripción |
+    | ------ | ------ |
+    | 2:0 MODE | Función |
+    | 3 EPD | 0, Desactiva pull-down. 1, Activa pull-down |
+    | 4 EPUN | 0, Activa pull-up. 1, Desactiva pull-up |
+    | 5:32 | Otros |
