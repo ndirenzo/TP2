@@ -1,4 +1,4 @@
-# TP1 - Sistemas Embebidos - Facultad de Ingeniería Universidad de Buenos Aires 10 de Mayo 2022
+# TP2 - Sistemas Embebidos - Facultad de Ingeniería Universidad de Buenos Aires 10 de Mayo 2022
 
 ## Integrantes Grupo 1 : N.Direnzo, G.Pintos, J.González, M.Pinto
 
