@@ -25,7 +25,10 @@
              >**1.En app.c, dentro de main() se definen:  
                    bool_t buttonValue = OFF; // En esta variable se copia el valor negado del pin conectado al pulsador 1 'TEC1', leído mediante gpioRead(), en el led correspondiente 'LEDB'. 
                    bool_t ledValue    = OFF; // En esta variable se almacena el estado del led 'LEDB', que se usa luego para imprimirlo con printf()
-                  tick_t timeCount   = 0;    // **
+                  tick_t timeCount   = 0;    // En esta variable para contar el tiempo transcurrido en milisegundos.  
+    Dentro del primer while() de la linea 27, el cual es un bucle infinito, la variable timeCount empieza a incrementar en una unidad y cuando esta llegue a 100, habran transcurrido 100 ciclos del bucle en donde cada uno tiene un delay de 100ms. Por lo tanto cuando timeCount=100, implica que se tiene un retardo de 100 ciclos * 100ms = 10segundos. Mientras el valor de esta variable sea menor a 100, se ejecuta la funcion gpioToggle() en donde el 'LEDB' modifica su estado por cada ciclo que transcurra. Por lo tanto se puede apreciar un "parpadeo" del led cada 100ms.
+                  Cuando timeCount es 100, se ingresa a otro bucle infinito con un while() en la linea 40, y ahora en cada ciclo se lee e invierte el valor del pin que corresponde a 'TEC1', y con ésta utiliza la funcion gpioWrite() para modificar el valor del 'LEDB', generando otro parpadeo pero ahora cada 250ms. 
+                  
 2. El objetivo a continuación es crear las funciones gpioInit, gpioWrite y gpioRead, las cuales implementan completamente el uso de los
 GPIOs de la placa en una manera simple y general: 
 
