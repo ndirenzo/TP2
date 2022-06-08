@@ -21,9 +21,11 @@
              4. gpioToggle() incluidad desde "sapi_gpio.c". Escribe en un pin de la placa de desarrollo - definido como salida - el valor inverso al presente actualmente en el pin, esto lo hace llamando a la función gpioWrite(pin, !gpioRead(pin)).  
              5. boardconfig() incluida desde "sapi_board.h". Configura los pines como entrada o salida a través de la función gpioInit(), p.ej. gpioInit(TEC1, GPIO_INPUT) establece el pin de la placa de desarrollo llamado "TEC1" como entrada.**
              
-      - iii. Idem c pero con datos (definiciones, constantes, variables, estructuras, etc.) (tanto en ResetISR() como en main())
-           
-          
+      - iii. Idem c pero con datos (definiciones, constantes, variables, estructuras, etc.) (tanto en ResetISR() como en main())  
+             >**1.En app.c, dentro de main() se definen:  
+                   bool_t buttonValue = OFF; // En esta variable se copia el valor negado del pin conectado al pulsador 1 'TEC1', leído mediante gpioRead(), en el led correspondiente 'LEDB'. 
+                   bool_t ledValue    = OFF; // En esta variable se almacena el estado del led 'LEDB', que se usa luego para imprimirlo con printf()
+                  tick_t timeCount   = 0;    // **
 2. El objetivo a continuación es crear las funciones gpioInit, gpioWrite y gpioRead, las cuales implementan completamente el uso de los
 GPIOs de la placa en una manera simple y general: 
 
