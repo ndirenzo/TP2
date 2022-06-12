@@ -61,29 +61,31 @@ GPIOs de la placa en una manera simple y general:
 
       para trabajar con las confgiuraciones se crea un tipo enumerativo ** gpioInit_t ** con las posibles configuraciones que pasada como parámetro a una función de iniciación permitan recorrer distintos 'case' de un 'switch' para definir los parámetros de configuración.      
       
-                ```c
-                typedef enum gpioInit_t {
-                  GPIO_INPUT,
-                  GPIO_OUTPUT,
-                  ...
-                }
-                ```
+             ```c
+             typedef enum gpioInit_t {
+               GPIO_INPUT,
+               GPIO_OUTPUT,
+               ...
+             }
+             ```
     d. Para la asociación entre SCU y GPIO se usa una estructura de estructuras asociadas a nombre y puerto del pin y del GPIO
     
-                ```c
-                typedef struct gpioInitLPC4337_t {
-                  pinInitLpc4337_t pinName,
-                  int-8_t func,
-                  gpioInitLpc4337_t gpio
-                }
-                ```
+             ```c
+             typedef struct gpioInitLPC4337_t {
+               pinInitLpc4337_t pinName,
+               int-8_t func,
+               gpioInitLpc4337_t gpio
+             }
+             ```
                 
     e. El vector global de estas estructuras con las configuraciones de GPIO que la función gpioInit utilizará para buscar como configurar cada pin.
     
                
-                ```c
-               const pinInitGpioLpc4337_t gpioPinsInitPropia[] = {
-                  ...
-                  { {2,10}, FUNC0, {0,14} },   // 40   LED1    LED1
-                  ...
-                ```
+             ```c
+            const pinInitGpioLpc4337_t gpioPinsInitPropia[] = {
+               ...
+               { {2,10}, FUNC0, {0,14} },   // 40   LED1    LED1
+               ...
+             ```
+             
+     
