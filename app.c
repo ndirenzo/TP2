@@ -6,8 +6,10 @@
 
 // Inlcusiones
 
-#include "app.h"         // <= Su propia cabecera
-#include "sapi.h"        // <= Biblioteca sAPI
+#include "../../TP2/inc/app.h"         // <= Su propia cabecera
+
+#include "sapi.h"
+#include "sapi_gpio_nuevo.h" // <= Biblioteca sAPI
 
 // FUNCION PRINCIPAL, PUNTO DE ENTRADA AL PROGRAMA LUEGO DE ENCENDIDO O RESET.
 int main( void )
@@ -36,23 +38,25 @@ int main( void )
       timeCount++;      
       
       if( timeCount == 100 ){ // 100ms * 100 = 10s
-         
+    	  gpioWriteNew(LEDB,0);
+    	  delay(1000);
+    	  gpioWriteNew(LED1,1);
          while( TRUE ) {
             
             /* Si se presiona CIAA_BOARD_BUTTON, enciende el CIAA_BOARD_LED */
 
             // Leer pin conectado al boton.
-            buttonValue = gpioRead( CIAA_BOARD_BUTTON );
+            buttonValue = gpioReadNew( CIAA_BOARD_BUTTON );
             // Invertir el valor leido, pues lee un 0 (OFF) con boton
             // presionado y 1 (ON) al liberarla.
             buttonValue = !buttonValue;
             // Escribir el valor leido en el LED correspondiente.
-            gpioWrite( CIAA_BOARD_LED, buttonValue );
+            gpioWriteNew( CIAA_BOARD_LED, buttonValue );
 
             /* Enviar a la salida estandar (UART_DEBUG) el estado del LED */
             
             // Leer el estado del pin conectado al led
-            ledValue = gpioRead( CIAA_BOARD_LED );
+            ledValue = gpioReadNew( CIAA_BOARD_LED );
             // Chequear si el valor leido es encedido
             if( ledValue == ON ) {
                // Si esta encendido mostrar por UART_USB "LED encendido."
@@ -66,7 +70,8 @@ int main( void )
          }
       } else {
          // Intercambiar el valor de CIAA_BOARD_LED
-         gpioToggle(CIAA_BOARD_LED);
+         gpioToggleNew(LEDB);
+
       }
    }
 
